@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    background-color: #002A5B;
+    margin: 0;
+}
+
+h1 {
+    margin: 0;
+    padding: 1% 0 0 0;
+    color: #F9A01B;
+    font-weight: normal;
+    size: 1.3em;
+    text-align: center;
+}
+
+h4 {
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+}
+
+.selectSkill {
+    background-color: #fff;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.skill { 
+    margin: 0 10px;
+    border: none;
+    height: 100%;
+    color: #00471B;
+    font-size: 1.2em;
+    border-radius: 0 0 5px 5px;
+}
+
+.skill:hover {
+    background-color: #002A5B;
+    color: #F9A01B;
+}
+
+#selected {
+    background-color: #002A5B;
+    color: #F9A01B;
+}
+
+.container{
+    margin: 5% 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+ background-color: aqua;
+ width: 30%;
+ height: 30%;
+ border: 1px solid black;
+}

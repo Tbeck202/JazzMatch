@@ -51,9 +51,8 @@ h4 {
 }
 
 .container{
-    margin: 5% 0;
-    display: flex;
-    justify-content: space-around;
+    margin: 5% auto;
+    width: 80%;
 }
 
 .card {
@@ -61,4 +60,6 @@ h4 {
  width: 30%;
  height: 30%;
  border: 1px solid black;
+ padding: 100px;
+ margin: 0 auto;
 }

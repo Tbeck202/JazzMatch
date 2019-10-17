@@ -56,10 +56,14 @@ h4 {
 }
 
 .card {
- background-color: aqua;
- width: 30%;
- height: 30%;
- border: 1px solid black;
- padding: 100px;
+ border: 15px solid #F9A01B;
+ border-radius: 2%;
  margin: 0 auto;
+ text-align: center;
+ height: 400px;
+ width: 300px;
+}
+
+img {
+    margin: 0 auto;
 }

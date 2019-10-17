@@ -38,14 +38,17 @@ h4 {
     color: #00471B;
     font-size: 1.2em;
     border-radius: 0 0 5px 5px;
+    outline: none;
 }
 
 .skill:hover {
-    background-color: #002A5B;
-    color: #F9A01B;
+    /* background-color: rgba(0, 42, 91, .75); */
+    background-color: #F9A01B;
+    color: #00471B;
+    cursor: pointer;
 }
 
-#selected {
+.selected {
     background-color: #002A5B;
     color: #F9A01B;
 }
@@ -56,14 +59,29 @@ h4 {
 }
 
 .card {
- border: 15px solid #F9A01B;
+ border: 10px solid #F9A01B;
  border-radius: 2%;
  margin: 0 auto;
  text-align: center;
  height: 400px;
  width: 300px;
+ display: none;
+}
+
+.show{
+    display: block;
 }
 
 img {
     margin: 0 auto;
+}
+
+.btn {
+    background-color: #002A5B;
+    color: #F9A01B;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #F9A01B;
+    font-size: 1.2em;
+    cursor: pointer;
 }

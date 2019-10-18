@@ -76,7 +76,7 @@ img {
     margin: 0 auto;
 }
 
-.btn {
+.matchBtn {
     background-color: #002A5B;
     color: #F9A01B;
     padding: 5px 10px;
@@ -84,4 +84,5 @@ img {
     border: 1px solid #F9A01B;
     font-size: 1.2em;
     cursor: pointer;
+    display: none;
 }

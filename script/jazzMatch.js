@@ -75,7 +75,7 @@ var players = [
         name: "Deron Williams",
         number: 8,
         difficulty: "ca",
-        src: '/images/DeronWilliams.jpg,'
+        src: '/images/DeronWilliams.jpg'
     },
     {
         name: "Derrick Favors",
@@ -138,7 +138,7 @@ var players = [
         src: '/images/JeffHornacek.jpg',
     },
     {
-        name: "CJ MIles",
+        name: "CJ Miles",
         number: 34,
         difficulty: "as",
         src: '/images/CJMiles.jpg',
@@ -230,8 +230,30 @@ var players = [
 ]
 var display = [];
 var skillBtn = document.querySelectorAll(".skill");
+var go = document.getElementById("go");
 var skill;
-var matchBtn = document.querySelectorAll(".matchBtn");
+var matchBtn = document.querySelectorAll(".matchButtons");
+var playerDisplay;
+var message = document.querySelector(".message");
+var scoreDisplay = document.getElementById("score");
+var score = 0;
+var scorePossible;
+var guessCounter = 0;
+var isMatch = false;
+var card = document.querySelector(".card");
+var welcome = document.querySelector("#welcome");
+var reset = document.getElementById("reset");
+
+start();
+go.addEventListener("click", function(){
+    game();
+})
+
+function start(){
+    for(var i = 0; i < matchBtn.length; i++){
+        matchBtn[i].classList.add("hide");
+    }
+}
 
 //Skill level selection
 for (var i = 0; i < skillBtn.length; i++){
@@ -250,22 +272,26 @@ for (var i = 0; i < skillBtn.length; i++){
 //set initial array for desired skill level
 function setCards(skill){
     if(skill === "Bandwagon"){
+        scorePossible = 5;
         bandWagon();
     }
     else if(skill === "Casual"){
+        scorePossible = 10;
         bandWagon();
         casual();
     }
     else if(skill === "All-Star"){
+        scorePossible = 20;
         bandWagon();
         casual();
         allStar();
     }
     else{
+        scorePossible = players.length - 1;
         display = players;
     }
+    go.classList.remove("hide");
     shuffleDisplay(display);
-    console.log(display);
 }
 //pick out all players for "Bandwagon" level
 function bandWagon(){
@@ -299,14 +325,98 @@ function shuffleDisplay(array) {
         array[i] = array[j];
         array[j] = temp;
     }
-    game();
 }
 
 function game(){
-    var i = 0;
-    if (i < display.length){
-        document.playerPhoto.src = display[i].src;
+    setup();
+    if(isMatch){
+        score++;
+    }
+    if (guessCounter < scorePossible){
+        checkMatch();
+    }else{
+        gameOver();
         
     }
-        
 }
+
+function showButtons(){
+    for (var i = 0; i < matchBtn.length; i++){
+        matchBtn[i].classList.remove("hide");
+    }
+}
+
+function hideButtons(){
+    for (var i = 0; i < matchBtn.length; i++){
+        matchBtn[i].classList.add("hide");
+    }
+}
+
+function checkMatch(){
+    for(var i = 0; i < matchBtn.length; i++){
+        matchBtn[i].addEventListener("click", function(){
+            if(this.textContent === playerDisplay){
+                console.log("match");
+                message.textContent = "Correct!";
+                this.classList.add("hide");
+                isMatch = true;
+            }else{
+                console.log("no match");
+                message.textContent = "Incorrect";
+                isMatch = false;
+            }
+            go.classList.remove("hide");
+            go.textContent= "Next";
+            hideButtons();
+        })
+    }
+    guessCounter++;
+}
+
+function setup(){
+    skillBtn[0].disabled = true;
+        skillBtn[1].disabled = true;
+        skillBtn[2].disabled = true;
+        skillBtn[3].disabled = true;
+    card.classList.add("show");
+    message.classList.remove("hide");
+    scoreDisplay.classList.remove("hide");
+    welcome.classList.add("hide");
+    showButtons();
+    go.classList.add("hide");
+    playerDisplay = display[guessCounter].name;
+    document.playerPhoto.src = display[guessCounter].src;
+    scoreDisplay.textContent = guessCounter + 1 + " / " + scorePossible; 
+    message.textContent = "";
+}
+
+function gameOver() {
+    document.playerPhoto.src = "";
+    card.classList.remove("show");
+    welcome.classList.remove("hide");
+    message.textContent = "";
+    go.classList.add("hide");
+    scoreDisplay.classList.add("hide");
+    reset.classList.remove("hide");
+    hideButtons();
+    reset.addEventListener("click", function(){
+        window.location.reload(false);
+    })
+    var finalScore = score / scorePossible;
+    if (finalScore <= .2){
+        welcome.textContent = "You got " +  score + " out of " + scorePossible + "..." + " Let's just pretend that didn't happen. Click reset to try again.";
+    }
+    else if(finalScore > .2 && finalScore <= .5){
+        welcome.textContent = "You got " +  score + " out of " + scorePossible + "." + " I'm not mad, just disappointed. Click reset to try again.";
+    }
+    else if (finalScore > .5 && finalScore < .7){
+        welcome.textContent = "You got " +  score + " out of " + scorePossible + "." + " I think you can do better than that. Click reset to try again.";
+    }
+    else if (finalScore >= .7 && finalScore < .999){
+        welcome.textContent = "You got " +  score + " out of " + scorePossible + "!" + " Someone really knows their Jazz-men! Click reset to try again.";
+    }
+    else if (finalScore === 1){
+        welcome.textContent = "You got " +  score + " out of " + scorePossible + "!" + " Look at you with the Jazz player match-a-bility! Click reset to play again.";
+    }
+}
+

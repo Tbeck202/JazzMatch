@@ -194,7 +194,7 @@ img {
     }
 }
 
-@media (max-width: 375px){
+@media (max-width: 450px){
     .skill{
         font-size: .8em;
     }

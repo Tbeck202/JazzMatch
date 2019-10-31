@@ -375,16 +375,16 @@ function checkMatch(){
 
 function setup(){
     skillBtn[0].disabled = true;
-        skillBtn[1].disabled = true;
-        skillBtn[2].disabled = true;
-        skillBtn[3].disabled = true;
+    skillBtn[1].disabled = true;
+    skillBtn[2].disabled = true;
+    skillBtn[3].disabled = true;
     card.classList.add("show");
     message.classList.remove("hide");
     scoreDisplay.classList.remove("hide");
     welcome.classList.add("hide");
+    playerDisplay = display[guessCounter].name;
     showButtons();
     go.classList.add("hide");
-    playerDisplay = display[guessCounter].name;
     document.playerPhoto.src = display[guessCounter].src;
     scoreDisplay.textContent = guessCounter + 1 + " / " + scorePossible; 
     message.textContent = "";
